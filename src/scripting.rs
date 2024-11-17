@@ -46,7 +46,7 @@ fn spawn_things(mut commands: Commands) {
             pub async fn main() {
                 let i = 0; 
                 while i < 10 { 
-                    println!("Tick: {}", i);
+                    println!("Script Counter: {}", i);
                     time::sleep(time::Duration::from_secs(1)).await;
                     i += 1;
                 }
