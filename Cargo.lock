@@ -335,6 +335,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "bevy-tokio-tasks"
+version = "0.14.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a8893452e2329cdbfdee5244bb6bd1be1910b91530f91ca44565edca90b16cdb"
+dependencies = [
+ "bevy_app",
+ "bevy_ecs",
+ "tokio",
+]
+
+[[package]]
 name = "bevy_a11y"
 version = "0.14.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3410,6 +3421,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2be1152db68e40ef9b76c1eb2119509da9e11fc58756b5d6894c1d79da744f0f"
 dependencies = [
  "rune",
+ "tokio",
 ]
 
 [[package]]
@@ -3472,6 +3484,7 @@ name = "scriptvania"
 version = "0.1.0"
 dependencies = [
  "bevy",
+ "bevy-tokio-tasks",
  "rune",
  "rune-modules",
  "serde",

@@ -9,6 +9,11 @@ struct Position {
     z: i64,
 }
 
+struct Symbol {
+    char: char,
+    color: Color,
+}
+
 fn main() {
     App::new()
         .add_plugins((MinimalPlugins, ScriptingPlugin))
