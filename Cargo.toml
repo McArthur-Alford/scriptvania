@@ -4,8 +4,9 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-bevy = "0.14.2"
+bevy = { version = "0.14.2", features = ["bevy_render"] }
 bevy-tokio-tasks = "0.14.0"
+bevy_fast_tilemap = "0.8.1"
 rune = { version = "0.13.4", features = ["std", "tokio"] }
 rune-modules = { version = "0.13.4", features = ["time"] }
 serde = "1.0.215"
