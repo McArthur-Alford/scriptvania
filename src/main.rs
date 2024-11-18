@@ -13,7 +13,7 @@ use bevy::render::render_resource::{
 use bevy_fast_tilemap::bundle::MapBundleManaged;
 use bevy_fast_tilemap::map::Map;
 use bevy_fast_tilemap::plugin::FastTileMapPlugin;
-use spatial::apply_velocity;
+use spatial::{apply_velocity, SpatialPlugin};
 
 #[derive(Component)]
 struct Window {
@@ -66,14 +66,14 @@ fn main() {
         .add_plugins((
             DefaultPlugins.set(bevy::log::LogPlugin {
                 // level: bevy::log::Level::TRACE,
-                filter: "bevy_ecs=info,scheduler=warn".to_string(),
+                filter: "bevy_ecs=info,scheduler=warn,wgpu_hal=error,naga=error".to_string(),
                 ..Default::default()
             }),
             FastTileMapPlugin::default(),
             ScriptingPlugin,
             TickratePlugin,
+            SpatialPlugin,
         ))
         .add_systems(Startup, startup)
-        .add_systems(Tick, apply_velocity)
         .run();
 }

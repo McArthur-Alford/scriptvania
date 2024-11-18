@@ -13,7 +13,7 @@ struct Ticker {
 }
 
 #[derive(ScheduleLabel, Clone, Debug, PartialEq, Eq, Hash)]
-struct Tick;
+pub struct Tick;
 
 pub struct TickratePlugin;
 
