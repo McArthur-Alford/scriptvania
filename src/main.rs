@@ -1,27 +1,17 @@
+mod rendering;
 mod scheduler;
 mod scripting;
 mod spatial;
 
 use crate::scheduler::TickratePlugin;
 use crate::scripting::ScriptingPlugin;
-use bevy::ecs::component::Tick;
 use bevy::math::{uvec2, vec2};
 use bevy::prelude::*;
-use bevy::render::render_resource::{
-    Extent3d, TextureDescriptor, TextureDimension, TextureFormat, TextureUsages,
-};
 use bevy_fast_tilemap::bundle::MapBundleManaged;
 use bevy_fast_tilemap::map::Map;
 use bevy_fast_tilemap::plugin::FastTileMapPlugin;
-use spatial::{apply_velocity, SpatialPlugin};
-
-#[derive(Component)]
-struct Window {
-    width: i32,
-    height: i32,
-    depth: i32,
-    orientation: IVec3,
-}
+use rendering::RenderingPlugin;
+use spatial::SpatialPlugin;
 
 fn startup(
     mut commands: Commands,
@@ -73,6 +63,7 @@ fn main() {
             ScriptingPlugin,
             TickratePlugin,
             SpatialPlugin,
+            RenderingPlugin,
         ))
         .add_systems(Startup, startup)
         .run();

@@ -1,11 +1,11 @@
-use bevy::prelude::*;
+use bevy::{prelude::*, utils::HashSet};
 
 use crate::scheduler::Tick;
 
 #[derive(Resource)]
 struct Spatial {
     size: IVec3,
-    entities: Vec<Option<Entity>>,
+    entities: Vec<HashSet<Entity>>,
 }
 
 #[derive(Event)]
@@ -52,7 +52,7 @@ impl Spatial {
     fn new(size: IVec3) -> Self {
         Self {
             size,
-            entities: vec![None; (size.x * size.y * size.z) as usize],
+            entities: vec![HashSet::default(); (size.x * size.y * size.z) as usize],
         }
     }
 
@@ -83,9 +83,9 @@ impl Spatial {
         }
     }
 
-    fn get(&self, pos: IVec3) -> Option<Entity> {
+    fn get(&self, pos: IVec3) -> Option<HashSet<Entity>> {
         let index = self.index(pos)?;
-        self.entities[index]
+        Some(self.entities[index].clone())
     }
 
     fn update(&mut self, pos: IVec3, entity: Entity, mut ev: EventWriter<SpatialUpdateEvent>) {
@@ -93,6 +93,6 @@ impl Spatial {
             return;
         };
         ev.send(SpatialUpdateEvent { position: pos });
-        self.entities[index] = Some(entity);
+        self.entities[index].insert(entity);
     }
 }
